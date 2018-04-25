@@ -22,12 +22,14 @@ Calentador::Calentador()
 
 void Calentador::calentar()
 {
-    temperatura+=5;
+    if(temperatura+incremento<=30)
+         temperatura+=incremento;
 }
 
 void Calentador::enfriar()
 {
-    temperatura-=5;
+    if(temperatura-incremento>=-10)
+        temperatura-=incremento;
 }
 
 void Calentador::imprimeT()
@@ -43,8 +45,15 @@ int Calentador::accedeT() const
 int main()
 {
     Calentador c1,c2;
-    c1.calentar();
-    c1.imprimeT();
-    c2.enfriar();
-    c2.imprimeT();
+    for(int i=0;i<5;i++)
+    {
+        c1.calentar();
+        c1.imprimeT();
+    }
+    std::cout<<std::endl;
+    for(int i=0;i<8;i++)
+    {
+        c2.enfriar();
+        c2.imprimeT();
+    }
 }
