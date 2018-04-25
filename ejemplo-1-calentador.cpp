@@ -4,17 +4,20 @@ class Calentador
 {
     private: 
         int temperatura;
+        int incremento;
     
     public:
         Calentador();
         void calentar();
         void enfriar();
         void imprimeT();
+        int accedeT() const;// a los metodos de acceso se le agrega const para indicar que no modifica las variables
 };// punto y coma obligatorio
 
 Calentador::Calentador()
 {
     temperatura=15;
+    incremento=3;
 }
 
 void Calentador::calentar()
@@ -30,6 +33,11 @@ void Calentador::enfriar()
 void Calentador::imprimeT()
 {
     std::cout<<"La temperatura es "<<temperatura<<std::endl;
+}
+
+int Calentador::accedeT() const
+{
+    return temperatura;
 }
 
 int main()
