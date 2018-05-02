@@ -9,11 +9,12 @@ class Calentador
     
     public:
         Calentador(int min,int max,int temperatura=0);
-        void calentar();
-        void enfriar();
+        void operator++();
+        void operator--();
         void imprimeT();
         int accedeT() const;// a los metodos de acceso se le agrega const para indicar que no modifica las variables
         void imprimeFaren() const;
+        bool operator==(Calentador otro); 
 };// punto y coma obligatorio
 
 Calentador::Calentador(int min,int max,int temperatura)
@@ -38,13 +39,13 @@ Calentador::Calentador(int min,int max,int temperatura)
     this->max=max;
 }
 
-void Calentador::calentar()
+void Calentador::operator++()
 {
     if(temperatura+incremento<=max)
          temperatura+=incremento;
 }
 
-void Calentador::enfriar()
+void Calentador::operator--()
 {
     if(temperatura-incremento>=min)
         temperatura-=incremento;
@@ -65,22 +66,34 @@ void Calentador::imprimeFaren() const
     std::cout<<"La temperatura en Farenheit es: "<<temperatura*1.8+32<<" F°"<<std::endl;
 }
 
+bool Calentador::operator==(Calentador otro)
+{
+    if(this->temperatura==otro.temperatura)
+        return true;
+    else
+        return false;
+}
+
 int main()
 {
     //try
     //{
-        Calentador c1{-10,10};
-        Calentador c2{30,10,-10};
+        Calentador c1{10,30,15};
+        Calentador c2{-10,10,0};
+        if(c1==c2)
+            std::cout<<"iguales"<<std::endl;
+        else
+            std::cout<<"diferentes"<<std::endl;
         for(int i=0;i<5;i++)
         {
-            c1.calentar();
+            ++c1;
             c1.imprimeT();
             c1.imprimeFaren();
         }
         std::cout<<std::endl;
         for(int i=0;i<8;i++)
         {
-            c2.enfriar();
+            --c2;
             c2.imprimeT();
             c2.imprimeFaren();
         }
