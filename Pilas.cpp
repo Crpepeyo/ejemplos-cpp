@@ -43,7 +43,7 @@ void Pila<Tipo>::Push(Tipo d)
 template <typename Tipo>
 Tipo Pila<Tipo>::Pop()
 {
-    if(Tope<0)
+    if(Tope>=0)
     {
         
     }
